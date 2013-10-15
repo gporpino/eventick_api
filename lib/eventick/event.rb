@@ -26,6 +26,7 @@ module Eventick
 
     def self.all_by_token(token)
       events_response = Eventick.get path ({ token: token })
+      puts "events_response #{events_response}"
       eval events_response
       events_response['events'].map { |event_response| self.new event_response }
     end
