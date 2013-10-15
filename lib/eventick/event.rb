@@ -20,6 +20,13 @@ module Eventick
     # class methods
     def self.all
       events_response = Eventick.get path
+      eval events_response
+      events_response['events'].map { |event_response| self.new event_response }
+    end
+
+    def self.all_by_token(token)
+      events_response = Eventick.get path token
+      eval events_response
       events_response['events'].map { |event_response| self.new event_response }
     end
 
